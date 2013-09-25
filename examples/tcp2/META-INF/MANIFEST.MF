@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: tcp2
+Bundle-SymbolicName: tcp2
+Bundle-Version: 1.0.0.qualifier
+Export-Package: tcp2.c,
+ tcp2.e,
+ tcp2.f,
+ tcp2.l,
+ tcp2.r,
+ tcp2.s,
+ tcp2.t

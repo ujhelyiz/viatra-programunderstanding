@@ -1,0 +1,15 @@
+package hu.bme.mit.viatra2.examples.reveng.viewer
+
+import "http://planet-mde.org/ttc2011/statemachine"
+
+@Item(label = "$st.name$", item = st)
+pattern state(st : State) {
+	State(st);
+}
+
+@Edge(source = src, target = trg)
+pattern transition(src : State, trg : State) {
+	Transition(t);
+	Transition.src(t, src);
+	Transition.dst(t, trg);
+}

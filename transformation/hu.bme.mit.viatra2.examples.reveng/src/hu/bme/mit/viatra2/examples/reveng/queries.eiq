@@ -1,0 +1,247 @@
+package hu.bme.mit.viatra2.examples.reveng
+
+import "http://www.emftext.org/java/classifiers"
+import "http://www.emftext.org/java/containers"
+import "http://www.emftext.org/java/commons"
+import "http://www.emftext.org/java/expressions"
+import "http://www.emftext.org/java/members"
+import "http://www.emftext.org/java/modifiers"
+import "http://www.emftext.org/java/parameters"
+import "http://www.emftext.org/java/references"
+import "http://www.emftext.org/java/statements"
+import "http://www.emftext.org/java/types"
+
+@ObservableValue(name = "name", expression = "cl.name")
+pattern class(cl : Class) {
+	Class(cl);
+}
+
+pattern methodsOfClass(cl : Class, m : ClassMethod) {
+	find class(cl);
+	Class.members(cl, m);
+}
+
+pattern belowStatement(container, child : Statement) {
+	StatementContainer.statement(container, child);
+} or {
+	StatementListContainer.statements(container, child);
+} or {
+	Switch.cases(container, caseBlock);
+	SwitchCase.statements(caseBlock, child);
+} or {
+	TryBlock.catcheBlocks(container, catchBlock);
+	CatchBlock.statements(catchBlock, child);
+} or {
+	Condition.elseStatement(container, child);
+}
+ 
+pattern statementInMethod(st : Statement, m : ClassMethod) {
+	ClassMethod.statements(m, st);
+} or {
+	ClassMethod.statements(m, rootSt);
+	find belowStatement+(rootSt, st);
+}
+
+/**
+ * Matches classes that are subtypes of 'State'
+ */
+pattern classSubtypeOfState(cl : Class) {
+	find supertypeOfClass(supertype, cl);
+	find nameOfElement("State", supertype);
+} or {
+	find supertypeOfClass(supertype, cl);
+	find classSubtypeOfState(supertype);
+}
+
+/**
+ * Matches class of non-abstract subtypes of 'State'
+ */
+pattern notAbstractStateClass(cl : Class) {
+	find classSubtypeOfState(cl);
+	neg find abstractClass(cl);
+}
+
+/**
+ * Finds the name attribute for an element
+ */
+pattern nameOfElement(name, element : NamedElement) {
+	NamedElement.name(element, name);
+}
+
+/**
+ * Finds supertypes of a class
+ */
+pattern supertypeOfClass(supertype, cl : Class) {
+	Class.^extends(cl, nsClassRef);
+	find targetOfNamespaceClassifierReference(nsClassRef, supertype);
+}
+
+/**
+ * Navigate on the classifierReference and target relations to Target
+ */
+pattern targetOfNamespaceClassifierReference(nsClassRef : NamespaceClassifierReference, target ) {
+	NamespaceClassifierReference.classifierReferences(nsClassRef, classRef);
+	ClassifierReference.target(classRef, target);
+	
+}
+
+/**
+ * Matches abstract classes
+ */
+pattern abstractClass(cl : Class) {
+	AnnotableAndModifiable.annotationsAndModifiers(cl, mod);
+	Abstract(mod);
+}
+
+/**
+ * Finds the class which is called using an activate() method
+ */
+pattern classCalledWithActivate(activateCallClass, activatedClassRef : IdentifierReference, stateClass : Class) {
+	find classSubtypeOfState(stateClass);
+	
+	find referenceTargetInClass(activatedClassRef, activateCallClass, stateClass);
+	Reference.next(activatedClassRef, instanceCall);
+	
+	find methodCall(instanceCall, activatedCallClassInstance);
+	find nameOfElement("Instance", activatedCallClassInstance);
+	Reference.next(instanceCall, activateCall);
+	
+	find methodCall(activateCall, activateMethod);
+	find nameOfElement("activate", activateMethod);
+}
+
+pattern referenceTarget(targetRef : IdentifierReference, referencedTarget : ReferenceableElement) {
+	ElementReference.target(targetRef, referencedTarget);
+}
+
+pattern referenceTargetInStatement(targetRef : IdentifierReference, referencedTarget : ReferenceableElement, st : Statement) {
+	ExpressionStatement(st);
+	ExpressionStatement.expression(st, targetRef);
+	find referenceTarget(targetRef, referencedTarget);
+}
+
+pattern referenceTargetInMethod(targetRef : IdentifierReference, referencedTarget : ReferenceableElement, m : ClassMethod) {
+	find statementInMethod(st, m);
+	find referenceTargetInStatement(targetRef, referencedTarget, st);
+}
+
+pattern referenceTargetInClass(targetRef : IdentifierReference, referencedTarget : ReferenceableElement, cl : Class) {
+	find methodsOfClass(cl, m);
+	find referenceTargetInMethod(targetRef, referencedTarget, m);
+}
+//pattern referenceTarget_old(targetRef : IdentifierReference, sourceElement : Commentable, referencedTarget : ReferenceableElement) {	
+//	IdentifierReference(targetRef); //below sourceElement
+//	ElementReference.target(targetRef, referencedTarget);
+//}
+
+/**
+ * Connects a Method with its Caller
+ */
+ pattern methodCall(caller : MethodCall, method : ClassMethod) {
+ 	ElementReference.target(caller, method);
+ }
+ /**
+  * Finds the container class method for a given reference
+  */
+ pattern parentClassMethod(callingMethod : ClassMethod, identifierRef : IdentifierReference) {
+ 	ClassMethod(callingMethod);
+ 	find statementInMethod(st, callingMethod);
+ 	ExpressionStatement.expression(st, identifierRef);
+// 	IdentifierReference(identifierRef); //below CallingClassMethod
+ }
+ 
+ /**
+  * Finds the immediate parent switchcase constant for a reference
+  */
+ pattern parentSwitchCaseConstrant(caseConstant : EnumConstant, classMethod, identifierRef) {
+ 	NormalSwitchCase(switchCase);
+ 	find belowStatement(switchCase, st);
+ 	find parentSwitchCase(switchCase, classMethod, identifierRef);
+ 	
+ 	Conditional.condition(switchCase, condition);
+ 	IdentifierReference(condition);
+ 	find referenceTargetInStatement(condition, caseConstant, st);
+ }
+ 
+ /**
+  * Finds immediate parent switch case, checks for lowest parent
+  */
+  pattern parentSwitchCase(switchCase : NormalSwitchCase, classMethod : ClassMethod, identifierRef : IdentifierReference) {
+  	ClassMethod.statements(classMethod, st);
+  	find belowStatement(st, ^switch);
+  	Switch(^switch); //below ClassMethod
+  	Switch.cases(^switch, switchCase);
+  	SwitchCase.statements(switchCase, caseSt);
+  	find referenceInSwitch(identifierRef, caseSt);
+  	
+  	neg find lowerSwitch(^switch, identifierRef);
+  }
+  
+  pattern lowerSwitch(switchSt : Switch, identifierRef : IdentifierReference) {
+  	Switch(lowerSwitch);// below Switch
+  	find belowStatement+(switchSt, lowerSwitch);
+  	find referenceInSwitch(identifierRef, lowerSwitch);
+  }
+  
+  pattern referenceInSwitch(identifierRef : IdentifierReference, switchSt : Statement) {
+  	find belowStatement+(switchSt, st);
+  	ExpressionStatement.expression(st, identifierRef);
+  }
+  
+  /** Finds the class of the exception used in the parent catch block */
+  pattern parentCatchBlockClass(catchBlockClass, classMethod : ClassMethod, identifierRef : IdentifierReference) {
+  	CatchBlock(catchBlock);
+  	IdentifierReference(identifierRef); //below catchBlock
+  	find parentCatchBlock(catchBlock, classMethod, identifierRef);
+  	
+  	CatchBlock.parameter(catchBlock, param);
+  	OrdinaryParameter(param);
+  	find referenceTargetOfParameter(param, catchBlockClass);
+  }
+  
+  pattern referenceTargetOfParameter(param : OrdinaryParameter, target) {
+  	TypedElement.typeReference(param, nsClassRef);
+  	find targetOfNamespaceClassifierReference(nsClassRef, target);
+  }
+  
+  pattern parentCatchBlock(catchBlock : CatchBlock, classMethod : ClassMethod, identifierRef : IdentifierReference) {
+  	find statementInMethod(tryBlock, classMethod);
+  	TryBlock(tryBlock); //below classMethod
+  	TryBlock.catcheBlocks(tryBlock, catchBlock);
+  	CatchBlock.statements(catchBlock, catchStatement);
+  	find belowStatement+(catchStatement, exprSt);
+  	ExpressionStatement.expression(exprSt, identifierRef);
+  	IdentifierReference(identifierRef); //below catchBlock
+  	
+  	neg find lowerCatchBlock(catchBlock, identifierRef);
+  }
+  
+  pattern lowerCatchBlock(catchBlock : CatchBlock, identifierRef : IdentifierReference) {
+  	find belowStatement+(catchBlock, lowerCatchStatement);
+  	CatchBlock(lowerCatchBlock); //below catchBlock
+  	CatchBlock.statements(lowerCatchBlock, lowerCatchStatement);
+  	find belowStatement+(lowerCatchStatement, exprSt);
+  	ExpressionStatement.expression(exprSt, identifierRef);
+  	IdentifierReference(identifierRef); //below lowerCatchBlock
+  }
+  
+  pattern parentStatementContainer(statementContainer : StatementListContainer, expression : Expression) {
+  	ExpressionStatement(st);
+  	StatementListContainer.statements(statementContainer, st);
+  	ExpressionStatement.expression(st, expression);
+  }
+  
+//  pattern sendMethodParameterInContainer(sendMethodParameter, statementContainer : StatementListContainer) {
+//  	find parentStatementContainer(statementContainer, sendMethodCall);
+//  	
+//  	find methodCall(sendMethodCall, sendMethod);
+//  	find nameOfElement("send", sendMethod);
+//  	
+//  	find argumentOfMethodCall(argument, sendMethodCall);
+//  	Reference.next(argument, enumRef);
+//  	find referenceTarget(enumRef, argument, sendMethodParameter);
+//  }
+  
+//  pattern argumentOfMethodCall(argument : Expression, methodCall : MethodCall) {
+//  	Argumentable.arguments(methodCall, argument);
+//  }

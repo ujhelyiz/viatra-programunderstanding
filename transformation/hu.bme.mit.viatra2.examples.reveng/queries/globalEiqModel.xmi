@@ -1,0 +1,1574 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eMFPatternLanguage:PatternModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eMFPatternLanguage="http://www.eclipse.org/incquery/patternlanguage/emf/EMFPatternLanguage" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:patternLanguage="http://www.eclipse.org/incquery/patternlanguage/PatternLanguage">
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.stateTrace" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="cl"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="name"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://planet-mde.org/ttc2011/statemachine#//State/name"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="name"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.state" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
+    <annotations name="Item">
+      <parameters name="label">
+        <value xsi:type="patternLanguage:StringValue" value="$st.name$"/>
+      </parameters>
+      <parameters name="item">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="st"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+        </type>
+        <var var="st"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.transition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
+    <annotations name="Edge">
+      <parameters name="source">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="src"/>
+        </value>
+      </parameters>
+      <parameters name="target">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="trg"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="src">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <parameters name="trg">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+        </type>
+        <var var="t"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/src"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="src"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/dst"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="trg"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.class" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <annotations name="ObservableValue">
+      <parameters name="name">
+        <value xsi:type="patternLanguage:StringValue" value="name"/>
+      </parameters>
+      <parameters name="expression">
+        <value xsi:type="patternLanguage:StringValue" value="cl.name"/>
+      </parameters>
+    </annotations>
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+        </type>
+        <var var="cl"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.methodsOfClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <parameters name="m">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.3">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/members#//MemberContainer/members"/>
+            </type>
+          </tail>
+          <src var="cl"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="m"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.belowStatement" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="container"/>
+    <parameters name="child">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Statement"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//StatementContainer"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementContainer/statement"/>
+            </type>
+          </tail>
+          <src var="container"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//StatementListContainer"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="container"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Switch"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Switch/cases"/>
+            </type>
+          </tail>
+          <src var="container"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="caseBlock"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//SwitchCase"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="caseBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//TryBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//TryBlock/catcheBlocks"/>
+            </type>
+          </tail>
+          <src var="container"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlock"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="catchBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Condition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Condition/elseStatement"/>
+            </type>
+          </tail>
+          <src var="container"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="child"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.statementInMethod" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Statement"/>
+      </type>
+    </parameters>
+    <parameters name="m">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="m"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="m"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="rootSt"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="rootSt"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.classSubtypeOfState" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.10">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="supertype"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.9">
+          <parameters xsi:type="patternLanguage:StringValue" value="State"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="supertype"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.10">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="supertype"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.7">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="supertype"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.notAbstractStateClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.7">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.12">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.nameOfElement" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="name"/>
+    <parameters name="element">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/commons#//NamedElement"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/commons#//NamedElement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="element"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="name"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.supertypeOfClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="supertype"/>
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/classifiers#//Class/extends"/>
+            </type>
+          </tail>
+          <src var="cl"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="nsClassRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.11">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="nsClassRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="supertype"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.targetOfNamespaceClassifierReference" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="nsClassRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//NamespaceClassifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="target"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//NamespaceClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//NamespaceClassifierReference/classifierReferences"/>
+            </type>
+          </tail>
+          <src var="nsClassRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="classRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//ClassifierReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//ClassifierReference/target"/>
+            </type>
+          </tail>
+          <src var="classRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="target"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.abstractClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/modifiers#//AnnotableAndModifiable"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/modifiers#//AnnotableAndModifiable/annotationsAndModifiers"/>
+            </type>
+          </tail>
+          <src var="cl"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="mod"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/modifiers#//Abstract"/>
+        </type>
+        <var var="mod"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.classCalledWithActivate" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="activateCallClass"/>
+    <parameters name="activatedClassRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="stateClass">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.7">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="stateClass"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.17">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activatedClassRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateCallClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="stateClass"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//Reference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="activatedClassRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="instanceCall"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.18">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="instanceCall"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activatedCallClassInstance"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.9">
+          <parameters xsi:type="patternLanguage:StringValue" value="Instance"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activatedCallClassInstance"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//Reference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//Reference/next"/>
+            </type>
+          </tail>
+          <src var="instanceCall"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="activateCall"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.18">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateCall"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateMethod"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.9">
+          <parameters xsi:type="patternLanguage:StringValue" value="activate"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateMethod"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceTarget" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="targetRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="referencedTarget">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ReferenceableElement"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ElementReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+          </tail>
+          <src var="targetRef"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="referencedTarget"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceTargetInStatement" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="targetRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="referencedTarget">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ReferenceableElement"/>
+      </type>
+    </parameters>
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Statement"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+        </type>
+        <var var="st"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="targetRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.14">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="targetRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="referencedTarget"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceTargetInMethod" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="targetRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="referencedTarget">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ReferenceableElement"/>
+      </type>
+    </parameters>
+    <parameters name="m">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="m"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.15">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="targetRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="referencedTarget"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceTargetInClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="targetRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="referencedTarget">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ReferenceableElement"/>
+      </type>
+    </parameters>
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.4">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="m"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.16">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="targetRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="referencedTarget"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="m"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.methodCall" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="caller">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//MethodCall"/>
+      </type>
+    </parameters>
+    <parameters name="method">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//ElementReference"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/references#//ElementReference/target"/>
+            </type>
+          </tail>
+          <src var="caller"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="method"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentClassMethod" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="callingMethod">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+        </type>
+        <var var="callingMethod"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="callingMethod"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentSwitchCaseConstrant" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="caseConstant">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//EnumConstant"/>
+      </type>
+    </parameters>
+    <parameters name="classMethod"/>
+    <parameters name="identifierRef"/>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//NormalSwitchCase"/>
+        </type>
+        <var var="switchCase"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switchCase"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.21">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switchCase"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="classMethod"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Conditional"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Conditional/condition"/>
+            </type>
+          </tail>
+          <src var="switchCase"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="condition"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+        </type>
+        <var var="condition"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.15">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="condition"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="caseConstant"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentSwitchCase" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="switchCase">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//NormalSwitchCase"/>
+      </type>
+    </parameters>
+    <parameters name="classMethod">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="classMethod"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switch"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Switch"/>
+        </type>
+        <var var="switch"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Switch"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//Switch/cases"/>
+            </type>
+          </tail>
+          <src var="switch"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="switchCase"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//SwitchCase"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="switchCase"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="caseSt"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.23">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="caseSt"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.22">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switch"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.lowerSwitch" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="switchSt">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Switch"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Switch"/>
+        </type>
+        <var var="lowerSwitch"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switchSt"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="lowerSwitch"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.23">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="lowerSwitch"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceInSwitch" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="switchSt">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//Statement"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="switchSt"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentCatchBlockClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="catchBlockClass"/>
+    <parameters name="classMethod">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+        </type>
+        <var var="catchBlock"/>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+        </type>
+        <var var="identifierRef"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.26">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlock"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="classMethod"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//CatchBlock/parameter"/>
+            </type>
+          </tail>
+          <src var="catchBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="param"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/parameters#//OrdinaryParameter"/>
+        </type>
+        <var var="param"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.25">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="param"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlockClass"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.referenceTargetOfParameter" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="param">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/parameters#//OrdinaryParameter"/>
+      </type>
+    </parameters>
+    <parameters name="target"/>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/types#//TypedElement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/types#//TypedElement/typeReference"/>
+            </type>
+          </tail>
+          <src var="param"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="nsClassRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.11">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="nsClassRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="target"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentCatchBlock" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="catchBlock">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+      </type>
+    </parameters>
+    <parameters name="classMethod">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/members#//ClassMethod"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="tryBlock"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="classMethod"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//TryBlock"/>
+        </type>
+        <var var="tryBlock"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//TryBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//TryBlock/catcheBlocks"/>
+            </type>
+          </tail>
+          <src var="tryBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlock"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="catchBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="catchStatement"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="catchStatement"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="exprSt"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="exprSt"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+        </type>
+        <var var="identifierRef"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.27">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlock"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.lowerCatchBlock" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="catchBlock">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+      </type>
+    </parameters>
+    <parameters name="identifierRef">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="catchBlock"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="lowerCatchStatement"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+        </type>
+        <var var="lowerCatchBlock"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//CatchBlock"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="lowerCatchBlock"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="lowerCatchStatement"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.5" transitive="true">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="lowerCatchStatement"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="exprSt"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="exprSt"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="identifierRef"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+        </type>
+        <var var="identifierRef"/>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.parentStatementContainer" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
+    <parameters name="statementContainer">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//StatementListContainer"/>
+      </type>
+    </parameters>
+    <parameters name="expression">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/expressions#//Expression"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+        </type>
+        <var var="st"/>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//StatementListContainer"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//StatementListContainer/statements"/>
+            </type>
+          </tail>
+          <src var="statementContainer"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/statements#//ExpressionStatement"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://www.emftext.org/java/statements#//ExpressionStatement/expression"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="expression"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <importPackages>
+    <packageImport>
+      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/commons#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/members#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/parameters#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/statements#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/containers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/types#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/classifiers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/expressions#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/modifiers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/references#/"/>
+    </packageImport>
+  </importPackages>
+</eMFPatternLanguage:PatternModel>
