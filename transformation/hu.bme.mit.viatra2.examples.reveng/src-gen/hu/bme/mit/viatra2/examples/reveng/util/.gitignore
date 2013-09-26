@@ -106,3 +106,13 @@
 /SupertypeOfClassQuerySpecification.java
 /TargetOfNamespaceClassifierReferenceProcessor.java
 /TargetOfNamespaceClassifierReferenceQuerySpecification.java
+/.TransitionTraceProcessor.java._trace
+/.TransitionTraceQuerySpecification.java._trace
+/.TransitionProcessor.java._trace
+/.TransitionQuerySpecification.java._trace
+/.CallsProcessor.java._trace
+/.CallsQuerySpecification.java._trace
+/.UnprocessedStateClassProcessor.java._trace
+/.UnprocessedStateClassQuerySpecification.java._trace
+/.UnprocessedTransitionProcessor.java._trace
+/.UnprocessedTransitionQuerySpecification.java._trace

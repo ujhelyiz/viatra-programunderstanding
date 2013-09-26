@@ -110,3 +110,14 @@
 /TargetOfNamespaceClassifierReferenceMatch.java
 /TargetOfNamespaceClassifierReferenceMatcher.java
 /Trace.java
+/.TransitionTraceMatch.java._trace
+/.TransitionTraceMatcher.java._trace
+/.TransitionMatch.java._trace
+/.TransitionMatcher.java._trace
+/.CallsMatch.java._trace
+/.CallsMatcher.java._trace
+/.Preconditions.java._trace
+/.UnprocessedStateClassMatch.java._trace
+/.UnprocessedStateClassMatcher.java._trace
+/.UnprocessedTransitionMatch.java._trace
+/.UnprocessedTransitionMatcher.java._trace

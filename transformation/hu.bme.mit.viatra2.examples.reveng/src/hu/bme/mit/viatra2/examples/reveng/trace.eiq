@@ -9,3 +9,13 @@ pattern stateTrace(cl : Class, st : State) {
 	Class.name(cl, name);
 	State.name(st, name);
 }
+
+pattern transitionTrace(srcCl : Class, dstCl : Class, t : Transition) {
+	Transition.src(t, srcState);
+	find stateTrace(srcCl, srcState);
+	
+	Transition.dst(t, dstState);
+	find stateTrace(dstCl, dstState);
+	
+	find classCalledWithActivate(dstCl, _, srcCl);
+}

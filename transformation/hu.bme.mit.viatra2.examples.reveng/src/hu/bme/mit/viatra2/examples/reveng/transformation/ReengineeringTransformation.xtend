@@ -12,10 +12,17 @@ import org.eclipse.viatra2.emf.runtime.modelmanipulation.SimpleModelManipulation
 import org.eclipse.viatra2.emf.runtime.rules.batch.BatchTransformationRuleFactory
 import org.eclipse.viatra2.emf.runtime.rules.batch.BatchTransformationStatements
 import org.eclipse.viatra2.emf.runtime.transformation.batch.BatchTransformation
+import org.emftext.language.java.classifiers.Class
 import statemachine.State
 import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
+import hu.bme.mit.viatra2.examples.reveng.UnprocessedStateClassMatcher
+import hu.bme.mit.viatra2.examples.reveng.UnprocessedTransitionMatcher
+import org.eclipse.viatra2.emf.runtime.rules.TransformationRuleGroup
+
+import static com.google.common.base.Predicates.*
+import org.apache.log4j.Level
 
 class ReengineeringTransformation {
 	
@@ -39,32 +46,52 @@ class ReengineeringTransformation {
 		statements = new BatchTransformationStatements(transformation)
 		manipulation = new SimpleModelManipulations(transformation.iqEngine)
 		
+		transformation.ruleEngine.logger.level = Level::DEBUG
+		
 		sm = create(trgResource, stateMachine) as StateMachine
 	}
 	
 	
 	val createStateRule = createRule(NotAbstractStateClassMatcher::querySpecification) [
+		createState(cl)	
+	]
+
+	val createTransitionRule = createRule(ClassCalledWithActivateMatcher::querySpecification) [
+		createTransition(stateClass, activateCallClass)
+	]
+	
+	val createUnprocessedStateRule = createRule(UnprocessedStateClassMatcher::querySpecification) [
+		createState(cl)
+	]
+	
+	val createUnprocessedTransitionRule = createRule(UnprocessedTransitionMatcher::querySpecification) [
+		createTransition(stateClass, activateCallClass)
+	]
+	
+	private def createState(Class cl) {
 		println('''--> Found state class «cl.name»''')
 		val state = sm.createChild(stateMachine_States, state) as State
 		
 		val nameMatch = NameOfElementMatcher::querySpecification.<NameOfElementMatch, NameOfElementMatcher>find("element" -> cl)
 		state.set(state_Name, nameMatch.name)
-		
-	]
-
-	val createTransitionRule = createRule(ClassCalledWithActivateMatcher::querySpecification) [
+	}
+	
+	private def createTransition(Class stateClass, Class activateCallClass) {
 		println('''---> Transition found from «stateClass.name» to «activateCallClass.name»''')
 		val transition = sm.createChild(stateMachine_Transitions, transition) as Transition
 		val fromState = StateTraceMatcher::querySpecification.<StateTraceMatch, StateTraceMatcher>find("cl" -> stateClass).st
 		val toState = StateTraceMatcher::querySpecification.<StateTraceMatch, StateTraceMatcher>find("cl" -> activateCallClass).st
 		transition.set(transition_Src, fromState)
 		transition.set(transition_Dst, toState)
-		//transition.set(tra)
-	]
-	
+	}
 	
 	def reengineer() {
 		createStateRule.forall
 		createTransitionRule.forall
+	}
+	
+	def reengineer_update() {
+		val group = new TransformationRuleGroup(createUnprocessedStateRule, createUnprocessedTransitionRule)
+		group.until(alwaysTrue)
 	}
 }

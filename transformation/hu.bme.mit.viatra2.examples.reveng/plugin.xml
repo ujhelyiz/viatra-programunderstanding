@@ -2,11 +2,19 @@
 <plugin>
 
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.class"
+         id="hu.bme.mit.viatra2.examples.reveng.viewer.state"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ClassQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.class">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.StateQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.viewer.state">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.viewer.transition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.TransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.viewer.transition">
       </matcher>
    </extension>
    <extension
@@ -130,86 +138,6 @@
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentClassMethod"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentClassMethodQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentClassMethod">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentSwitchCaseConstrant"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentSwitchCaseConstrantQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentSwitchCaseConstrant">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentSwitchCase"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentSwitchCaseQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentSwitchCase">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.lowerSwitch"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.LowerSwitchQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.lowerSwitch">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.referenceInSwitch"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ReferenceInSwitchQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.referenceInSwitch">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentCatchBlockClass"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentCatchBlockClassQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentCatchBlockClass">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.referenceTargetOfParameter"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ReferenceTargetOfParameterQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.referenceTargetOfParameter">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentCatchBlock"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentCatchBlockQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentCatchBlock">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.lowerCatchBlock"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.LowerCatchBlockQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.lowerCatchBlock">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.parentStatementContainer"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.ParentStatementContainerQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.parentStatementContainer">
-      </matcher>
-   </extension>
-   <extension
          id="hu.bme.mit.viatra2.examples.reveng.stateTrace"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
@@ -218,19 +146,27 @@
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.viewer.state"
+         id="hu.bme.mit.viatra2.examples.reveng.transitionTrace"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.StateQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.viewer.state">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.TransitionTraceQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.transitionTrace">
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.viewer.transition"
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.TransitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.viewer.transition">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedStateClassQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedTransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition">
       </matcher>
    </extension>
 

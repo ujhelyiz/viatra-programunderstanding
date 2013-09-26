@@ -1,0 +1,24 @@
+package hu.bme.mit.viatra2.examples.reveng
+
+import "http://www.emftext.org/java/classifiers"
+import "http://www.emftext.org/java/containers"
+import "http://www.emftext.org/java/commons"
+import "http://www.emftext.org/java/expressions"
+import "http://www.emftext.org/java/members"
+import "http://www.emftext.org/java/modifiers"
+import "http://www.emftext.org/java/parameters"
+import "http://www.emftext.org/java/references"
+import "http://www.emftext.org/java/statements"
+import "http://www.emftext.org/java/types"
+
+pattern unprocessedStateClass(cl : Class) {
+	find notAbstractStateClass(cl);
+	neg find stateTrace(cl, _);
+}
+
+pattern unprocessedTransition(activateCallClass : Class, activatedClassRef : IdentifierReference, stateClass : Class) {
+	find classCalledWithActivate(activateCallClass, activatedClassRef, stateClass);
+	find stateTrace(activateCallClass, _);
+	find stateTrace(stateClass, _);
+	neg find transitionTrace(stateClass, activateCallClass, _);
+}
