@@ -6,9 +6,13 @@ import hu.bme.mit.viatra2.examples.reveng.NameOfElementMatcher
 import hu.bme.mit.viatra2.examples.reveng.NotAbstractStateClassMatcher
 import hu.bme.mit.viatra2.examples.reveng.StateTraceMatch
 import hu.bme.mit.viatra2.examples.reveng.StateTraceMatcher
+import hu.bme.mit.viatra2.examples.reveng.UnprocessedStateClassMatcher
+import hu.bme.mit.viatra2.examples.reveng.UnprocessedTransitionMatcher
+import org.apache.log4j.Level
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.viatra2.emf.runtime.modelmanipulation.IModelManipulations
 import org.eclipse.viatra2.emf.runtime.modelmanipulation.SimpleModelManipulations
+import org.eclipse.viatra2.emf.runtime.rules.TransformationRuleGroup
 import org.eclipse.viatra2.emf.runtime.rules.batch.BatchTransformationRuleFactory
 import org.eclipse.viatra2.emf.runtime.rules.batch.BatchTransformationStatements
 import org.eclipse.viatra2.emf.runtime.transformation.batch.BatchTransformation
@@ -17,12 +21,6 @@ import statemachine.State
 import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
-import hu.bme.mit.viatra2.examples.reveng.UnprocessedStateClassMatcher
-import hu.bme.mit.viatra2.examples.reveng.UnprocessedTransitionMatcher
-import org.eclipse.viatra2.emf.runtime.rules.TransformationRuleGroup
-
-import static com.google.common.base.Predicates.*
-import org.apache.log4j.Level
 
 class ReengineeringTransformation {
 	
@@ -86,12 +84,12 @@ class ReengineeringTransformation {
 	}
 	
 	def reengineer() {
-		createStateRule.forall
-		createTransitionRule.forall
+		createStateRule.fireAllCurrent
+		createTransitionRule.fireAllCurrent
 	}
 	
 	def reengineer_update() {
 		val group = new TransformationRuleGroup(createUnprocessedStateRule, createUnprocessedTransitionRule)
-		group.until(alwaysTrue)
+		group.fireWhilePossible
 	}
 }
