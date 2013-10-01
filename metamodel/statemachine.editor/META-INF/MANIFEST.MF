@@ -14,5 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  statemachine.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.emftext.language.java.edit;visibility:=reexport,
+ org.emftext.commons.layout.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

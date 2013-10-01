@@ -6,6 +6,8 @@ Bundle-Version: 0.0.1.qualifier
 Export-Package: hu.bme.mit.viatra2.examples.reveng,
  hu.bme.mit.viatra2.examples.reveng.transformation,
  hu.bme.mit.viatra2.examples.reveng.util,
+ hu.bme.mit.viatra2.examples.reveng.validation,
+ hu.bme.mit.viatra2.examples.reveng.validation.util,
  hu.bme.mit.viatra2.examples.reveng.viewer,
  hu.bme.mit.viatra2.examples.reveng.viewer.util
 Require-Bundle: org.emftext.language.java,

@@ -14,6 +14,12 @@
         eOpposite="#//Transition/src"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" upperBound="-1" eType="#//Transition"
         eOpposite="#//Transition/dst"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.emftext.language.java/metamodel/java.ecore#//classifiers/Class"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.incquery.querybasedfeature">
+        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.stateTrace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -22,5 +28,11 @@
         eOpposite="#//State/out"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dst" lowerBound="1" eType="#//State"
         eOpposite="#//State/in"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.emftext.language.java/metamodel/java.ecore#//references/IdentifierReference"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="org.eclipse.incquery.querybasedfeature">
+        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.transitionTrace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

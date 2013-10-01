@@ -21,6 +21,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import statemachine.State;
 import statemachine.StatemachinePackage;
 import statemachine.Transition;
+import org.eclipse.incquery.querybasedfeatures.runtime.IQueryBasedFeatureHandler;
+import org.eclipse.incquery.querybasedfeatures.runtime.QueryBasedFeatureKind;
+import org.eclipse.incquery.querybasedfeatures.runtime.QueryBasedFeatureHelper;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +35,7 @@ import statemachine.Transition;
  *   <li>{@link statemachine.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link statemachine.impl.StateImpl#getOut <em>Out</em>}</li>
  *   <li>{@link statemachine.impl.StateImpl#getIn <em>In</em>}</li>
+ *   <li>{@link statemachine.impl.StateImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -147,6 +151,28 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public org.emftext.language.java.classifiers.Class getSource() {
+		org.emftext.language.java.classifiers.Class source = basicGetSource();
+		return source != null && source.eIsProxy() ? (org.emftext.language.java.classifiers.Class)eResolveProxy((InternalEObject)source) : source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.emftext.language.java.classifiers.Class basicGetSourceGen() {
+		// TODO: implement this method to return the 'Source' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -189,6 +215,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 				return getOut();
 			case StatemachinePackage.STATE__IN:
 				return getIn();
+			case StatemachinePackage.STATE__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -252,6 +281,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 				return out != null && !out.isEmpty();
 			case StatemachinePackage.STATE__IN:
 				return in != null && !in.isEmpty();
+			case StatemachinePackage.STATE__SOURCE:
+				return basicGetSource() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -270,6 +301,28 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * EMF-IncQuery handler for query-based feature source
+	 */
+	private IQueryBasedFeatureHandler sourceHandler;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @query-based getter created by EMF-IncQuery for query-based feature source
+	 */
+	public org.emftext.language.java.classifiers.Class basicGetSource() {
+		if (sourceHandler == null) {
+			sourceHandler = QueryBasedFeatureHelper
+					.getQueryBasedFeatureHandler(this,
+							StatemachinePackageImpl.Literals.STATE__SOURCE,
+							"hu.bme.mit.viatra2.examples.reveng.stateTrace",
+							"st", "cl", QueryBasedFeatureKind.SINGLE_REFERENCE,
+							true, false);
+		}
+		return (org.emftext.language.java.classifiers.Class) sourceHandler
+				.getSingleReferenceValue(this);
 	}
 
 } //StateImpl

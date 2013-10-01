@@ -140,13 +140,22 @@ public interface StatemachinePackage extends EPackage {
 	int STATE__IN = 2;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__SOURCE = 3;
+
+	/**
 	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = 3;
+	int STATE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -204,13 +213,22 @@ public interface StatemachinePackage extends EPackage {
 	int TRANSITION__DST = 3;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__SOURCE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = 4;
+	int TRANSITION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -298,6 +316,17 @@ public interface StatemachinePackage extends EPackage {
 	EReference getState_In();
 
 	/**
+	 * Returns the meta object for the reference '{@link statemachine.State#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see statemachine.State#getSource()
+	 * @see #getState()
+	 * @generated
+	 */
+	EReference getState_Source();
+
+	/**
 	 * Returns the meta object for class '{@link statemachine.Transition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,6 +379,17 @@ public interface StatemachinePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_Dst();
+
+	/**
+	 * Returns the meta object for the reference '{@link statemachine.Transition#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see statemachine.Transition#getSource()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EReference getTransition_Source();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -435,6 +475,14 @@ public interface StatemachinePackage extends EPackage {
 		EReference STATE__IN = eINSTANCE.getState_In();
 
 		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE__SOURCE = eINSTANCE.getState_Source();
+
+		/**
 		 * The meta object literal for the '{@link statemachine.impl.TransitionImpl <em>Transition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -475,6 +523,14 @@ public interface StatemachinePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__DST = eINSTANCE.getTransition_Dst();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSITION__SOURCE = eINSTANCE.getTransition_Source();
 
 	}
 

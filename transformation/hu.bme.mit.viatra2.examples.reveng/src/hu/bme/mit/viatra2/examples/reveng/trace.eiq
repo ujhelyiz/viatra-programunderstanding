@@ -1,21 +1,24 @@
 package hu.bme.mit.viatra2.examples.reveng
 
+import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/classifiers"
 import "http://www.emftext.org/java/commons"
 
 import "http://planet-mde.org/ttc2011/statemachine"
 
+@QueryBasedFeature(source = st, feature = "source", target = cl)
 pattern stateTrace(cl : Class, st : State) {
 	Class.name(cl, name);
 	State.name(st, name);
 }
 
-pattern transitionTrace(srcCl : Class, dstCl : Class, t : Transition) {
+@QueryBasedFeature(source = t, feature = "source", target = ref)
+pattern transitionTrace(srcCl : Class, dstCl : Class, t : Transition, ref : IdentifierReference) {
 	Transition.src(t, srcState);
 	find stateTrace(srcCl, srcState);
 	
 	Transition.dst(t, dstState);
 	find stateTrace(dstCl, dstState);
 	
-	find classCalledWithActivate(dstCl, _, srcCl);
+	find classCalledWithActivate(dstCl, ref, srcCl);
 }

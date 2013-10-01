@@ -7,6 +7,8 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.emftext.commons.layout.provider.LayoutEditPlugin;
+import org.emftext.language.java.annotations.provider.JavaEditPlugin;
 
 /**
  * This is the central singleton for the StateMachine editor plugin.
@@ -40,6 +42,8 @@ public final class StateMachineEditorPlugin extends EMFPlugin {
 	public StateMachineEditorPlugin() {
 		super
 			(new ResourceLocator [] {
+				JavaEditPlugin.INSTANCE,
+				LayoutEditPlugin.INSTANCE,
 			});
 	}
 

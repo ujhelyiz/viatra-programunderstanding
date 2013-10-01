@@ -6,10 +6,14 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: statemachine,
  statemachine.impl,
  statemachine.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+Require-Bundle: org.eclipse.incquery.runtime,
+ org.eclipse.incquery.querybasedfeatures.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.emftext.language.java,
+ org.emftext.commons.layout
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

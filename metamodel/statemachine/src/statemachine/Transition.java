@@ -3,6 +3,7 @@
 package statemachine;
 
 import org.eclipse.emf.ecore.EObject;
+import org.emftext.language.java.references.IdentifierReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link statemachine.Transition#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link statemachine.Transition#getSrc <em>Src</em>}</li>
  *   <li>{@link statemachine.Transition#getDst <em>Dst</em>}</li>
+ *   <li>{@link statemachine.Transition#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,5 +133,21 @@ public interface Transition extends EObject {
 	 * @generated
 	 */
 	void setDst(State value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see statemachine.StatemachinePackage#getTransition_Source()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="org.eclipse.incquery.querybasedfeature patternFQN='hu.bme.mit.viatra2.examples.reveng.transitionTrace'"
+	 * @generated
+	 */
+	IdentifierReference getSource();
 
 } // Transition

@@ -9,6 +9,24 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.emftext.language.java.annotations.AnnotationsPackage;
+import org.emftext.language.java.arrays.ArraysPackage;
+import org.emftext.language.java.classifiers.ClassifiersPackage;
+import org.emftext.language.java.commons.CommonsPackage;
+import org.emftext.language.java.containers.ContainersPackage;
+import org.emftext.language.java.expressions.ExpressionsPackage;
+import org.emftext.language.java.generics.GenericsPackage;
+import org.emftext.language.java.imports.ImportsPackage;
+import org.emftext.language.java.instantiations.InstantiationsPackage;
+import org.emftext.language.java.literals.LiteralsPackage;
+import org.emftext.language.java.members.MembersPackage;
+import org.emftext.language.java.modifiers.ModifiersPackage;
+import org.emftext.language.java.operators.OperatorsPackage;
+import org.emftext.language.java.parameters.ParametersPackage;
+import org.emftext.language.java.references.ReferencesPackage;
+import org.emftext.language.java.statements.StatementsPackage;
+import org.emftext.language.java.types.TypesPackage;
+import org.emftext.language.java.variables.VariablesPackage;
 import statemachine.State;
 import statemachine.StateMachine;
 import statemachine.StatemachineFactory;
@@ -88,6 +106,26 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 		StatemachinePackageImpl theStatemachinePackage = (StatemachinePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StatemachinePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StatemachinePackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		AnnotationsPackage.eINSTANCE.eClass();
+		ArraysPackage.eINSTANCE.eClass();
+		ClassifiersPackage.eINSTANCE.eClass();
+		CommonsPackage.eINSTANCE.eClass();
+		ContainersPackage.eINSTANCE.eClass();
+		ExpressionsPackage.eINSTANCE.eClass();
+		GenericsPackage.eINSTANCE.eClass();
+		ImportsPackage.eINSTANCE.eClass();
+		InstantiationsPackage.eINSTANCE.eClass();
+		LiteralsPackage.eINSTANCE.eClass();
+		MembersPackage.eINSTANCE.eClass();
+		ModifiersPackage.eINSTANCE.eClass();
+		OperatorsPackage.eINSTANCE.eClass();
+		ParametersPackage.eINSTANCE.eClass();
+		ReferencesPackage.eINSTANCE.eClass();
+		StatementsPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		VariablesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theStatemachinePackage.createPackageContents();
@@ -172,6 +210,15 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getState_Source() {
+		return (EReference)stateEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTransition() {
 		return transitionEClass;
 	}
@@ -217,6 +264,15 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTransition_Source() {
+		return (EReference)transitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StatemachineFactory getStatemachineFactory() {
 		return (StatemachineFactory)getEFactoryInstance();
 	}
@@ -248,12 +304,14 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 		createEAttribute(stateEClass, STATE__NAME);
 		createEReference(stateEClass, STATE__OUT);
 		createEReference(stateEClass, STATE__IN);
+		createEReference(stateEClass, STATE__SOURCE);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEAttribute(transitionEClass, TRANSITION__ACTION);
 		createEAttribute(transitionEClass, TRANSITION__TRIGGER);
 		createEReference(transitionEClass, TRANSITION__SRC);
 		createEReference(transitionEClass, TRANSITION__DST);
+		createEReference(transitionEClass, TRANSITION__SOURCE);
 	}
 
 	/**
@@ -279,6 +337,10 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		ClassifiersPackage theClassifiersPackage = (ClassifiersPackage)EPackage.Registry.INSTANCE.getEPackage(ClassifiersPackage.eNS_URI);
+		ReferencesPackage theReferencesPackage = (ReferencesPackage)EPackage.Registry.INSTANCE.getEPackage(ReferencesPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -294,15 +356,43 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getState_Out(), this.getTransition(), this.getTransition_Src(), "out", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getState_In(), this.getTransition(), this.getTransition_Dst(), "in", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getState_Source(), theClassifiersPackage.getClass_(), null, "source", null, 0, 1, State.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransition_Action(), ecorePackage.getEString(), "action", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Trigger(), ecorePackage.getEString(), "trigger", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Src(), this.getState(), this.getState_Out(), "src", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransition_Dst(), this.getState(), this.getState_In(), "dst", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), theReferencesPackage.getIdentifierReference(), null, "source", null, 0, 1, Transition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// org.eclipse.incquery.querybasedfeature
+		createOrgAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>org.eclipse.incquery.querybasedfeature</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.eclipse.incquery.querybasedfeature";		
+		addAnnotation
+		  (getState_Source(), 
+		   source, 
+		   new String[] {
+			 "patternFQN", "hu.bme.mit.viatra2.examples.reveng.stateTrace"
+		   });		
+		addAnnotation
+		  (getTransition_Source(), 
+		   source, 
+		   new String[] {
+			 "patternFQN", "hu.bme.mit.viatra2.examples.reveng.transitionTrace"
+		   });
 	}
 
 } //StatemachinePackageImpl

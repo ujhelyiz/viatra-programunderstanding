@@ -2,20 +2,70 @@
 <plugin>
 
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.viewer.state"
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.StateQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.viewer.state">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedStateClassQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass">
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.viewer.transition"
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.TransitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.viewer.transition">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedTransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition">
       </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.StateWithMissingInstanceDefinitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.ClassWithInstanceDefinitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.stateTrace"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.StateTraceQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.stateTrace">
+      </matcher>
+   </extension>
+   <extension
+         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.stateTrace"
+         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+      <wellbehaving-derived-feature
+            classifier-name="State"
+            feature-name="source"
+            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
+      </wellbehaving-derived-feature>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.transitionTrace"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.TransitionTraceQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.transitionTrace">
+      </matcher>
+   </extension>
+   <extension
+         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.transitionTrace"
+         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+      <wellbehaving-derived-feature
+            classifier-name="Transition"
+            feature-name="source"
+            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
+      </wellbehaving-derived-feature>
    </extension>
    <extension
          id="hu.bme.mit.viatra2.examples.reveng.methodsOfClass"
@@ -138,35 +188,19 @@
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.stateTrace"
+         id="hu.bme.mit.viatra2.examples.reveng.viewer.state"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.StateTraceQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.stateTrace">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.StateQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.viewer.state">
       </matcher>
    </extension>
    <extension
-         id="hu.bme.mit.viatra2.examples.reveng.transitionTrace"
+         id="hu.bme.mit.viatra2.examples.reveng.viewer.transition"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.TransitionTraceQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.transitionTrace">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedStateClassQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedTransitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition">
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.viewer.util.TransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.viewer.transition">
       </matcher>
    </extension>
 

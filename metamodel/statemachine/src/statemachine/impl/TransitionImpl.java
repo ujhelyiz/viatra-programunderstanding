@@ -11,9 +11,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.emftext.language.java.references.Reference;
 import statemachine.State;
 import statemachine.StatemachinePackage;
 import statemachine.Transition;
+import org.eclipse.incquery.querybasedfeatures.runtime.IQueryBasedFeatureHandler;
+import org.eclipse.incquery.querybasedfeatures.runtime.QueryBasedFeatureKind;
+import org.emftext.language.java.references.IdentifierReference;
+import org.eclipse.incquery.querybasedfeatures.runtime.QueryBasedFeatureHelper;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +31,7 @@ import statemachine.Transition;
  *   <li>{@link statemachine.impl.TransitionImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link statemachine.impl.TransitionImpl#getSrc <em>Src</em>}</li>
  *   <li>{@link statemachine.impl.TransitionImpl#getDst <em>Dst</em>}</li>
+ *   <li>{@link statemachine.impl.TransitionImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -278,6 +284,16 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IdentifierReference getSourceGen() {
+		IdentifierReference source = basicGetSource();
+		return source != null && source.eIsProxy() ? (IdentifierReference)eResolveProxy((InternalEObject)source) : source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -327,6 +343,9 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 			case StatemachinePackage.TRANSITION__DST:
 				if (resolve) return getDst();
 				return basicGetDst();
+			case StatemachinePackage.TRANSITION__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -395,6 +414,8 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 				return src != null;
 			case StatemachinePackage.TRANSITION__DST:
 				return dst != null;
+			case StatemachinePackage.TRANSITION__SOURCE:
+				return basicGetSource() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -415,6 +436,59 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 		result.append(trigger);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @query-based getter created by EMF-IncQuery for query-based feature source
+	 */
+	public IdentifierReference getSource() {
+		if (sourceHandler == null) {
+			sourceHandler = QueryBasedFeatureHelper
+					.getQueryBasedFeatureHandler(
+							this,
+							StatemachinePackageImpl.Literals.TRANSITION__SOURCE,
+							"hu.bme.mit.viatra2.examples.reveng.transitionTrace",
+							"t", "ref", QueryBasedFeatureKind.SINGLE_REFERENCE,
+							true, false);
+		}
+		return (org.emftext.language.java.references.IdentifierReference) sourceHandler
+				.getSingleReferenceValue(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IdentifierReference basicGetSourceGen() {
+		// TODO: implement this method to return the 'Source' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * EMF-IncQuery handler for query-based feature source
+	 */
+	private IQueryBasedFeatureHandler sourceHandler;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @query-based getter created by EMF-IncQuery for query-based feature source
+	 */
+	public IdentifierReference basicGetSource() {
+		if (sourceHandler == null) {
+			sourceHandler = QueryBasedFeatureHelper
+					.getQueryBasedFeatureHandler(
+							this,
+							StatemachinePackageImpl.Literals.TRANSITION__SOURCE,
+							"hu.bme.mit.viatra2.examples.reveng.transitionTrace",
+							"t", "ref", QueryBasedFeatureKind.SINGLE_REFERENCE,
+							true, false);
+		}
+		return (org.emftext.language.java.references.IdentifierReference) sourceHandler
+				.getSingleReferenceValue(this);
 	}
 
 } //TransitionImpl

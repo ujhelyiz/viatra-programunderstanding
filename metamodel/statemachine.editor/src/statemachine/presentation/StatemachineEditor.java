@@ -157,6 +157,25 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import statemachine.provider.StatemachineItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.emftext.commons.layout.provider.LayoutItemProviderAdapterFactory;
+import org.emftext.language.java.annotations.provider.AnnotationsItemProviderAdapterFactory;
+import org.emftext.language.java.arrays.provider.ArraysItemProviderAdapterFactory;
+import org.emftext.language.java.classifiers.provider.ClassifiersItemProviderAdapterFactory;
+import org.emftext.language.java.commons.provider.CommonsItemProviderAdapterFactory;
+import org.emftext.language.java.containers.provider.ContainersItemProviderAdapterFactory;
+import org.emftext.language.java.expressions.provider.ExpressionsItemProviderAdapterFactory;
+import org.emftext.language.java.generics.provider.GenericsItemProviderAdapterFactory;
+import org.emftext.language.java.imports.provider.ImportsItemProviderAdapterFactory;
+import org.emftext.language.java.instantiations.provider.InstantiationsItemProviderAdapterFactory;
+import org.emftext.language.java.literals.provider.LiteralsItemProviderAdapterFactory;
+import org.emftext.language.java.members.provider.MembersItemProviderAdapterFactory;
+import org.emftext.language.java.modifiers.provider.ModifiersItemProviderAdapterFactory;
+import org.emftext.language.java.operators.provider.OperatorsItemProviderAdapterFactory;
+import org.emftext.language.java.parameters.provider.ParametersItemProviderAdapterFactory;
+import org.emftext.language.java.references.provider.ReferencesItemProviderAdapterFactory;
+import org.emftext.language.java.statements.provider.StatementsItemProviderAdapterFactory;
+import org.emftext.language.java.types.provider.TypesItemProviderAdapterFactory;
+import org.emftext.language.java.variables.provider.VariablesItemProviderAdapterFactory;
 
 
 /**
@@ -702,6 +721,25 @@ public class StatemachineEditor
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StatemachineItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new AnnotationsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ArraysItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ClassifiersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CommonsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ContainersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ExpressionsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new GenericsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ImportsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new InstantiationsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new LiteralsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new MembersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ModifiersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new OperatorsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ParametersItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReferencesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new StatementsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new VariablesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new LayoutItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

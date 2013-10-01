@@ -20,5 +20,5 @@ pattern unprocessedTransition(activateCallClass : Class, activatedClassRef : Ide
 	find classCalledWithActivate(activateCallClass, activatedClassRef, stateClass);
 	find stateTrace(activateCallClass, _);
 	find stateTrace(stateClass, _);
-	neg find transitionTrace(stateClass, activateCallClass, _);
+	neg find transitionTrace(stateClass, activateCallClass, _, _);
 }

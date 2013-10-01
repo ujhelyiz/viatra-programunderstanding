@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link statemachine.State#getName <em>Name</em>}</li>
  *   <li>{@link statemachine.State#getOut <em>Out</em>}</li>
  *   <li>{@link statemachine.State#getIn <em>In</em>}</li>
+ *   <li>{@link statemachine.State#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,5 +87,21 @@ public interface State extends EObject {
 	 * @generated
 	 */
 	EList<Transition> getIn();
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see statemachine.StatemachinePackage#getState_Source()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="org.eclipse.incquery.querybasedfeature patternFQN='hu.bme.mit.viatra2.examples.reveng.stateTrace'"
+	 * @generated
+	 */
+	org.emftext.language.java.classifiers.Class getSource();
 
 } // State
