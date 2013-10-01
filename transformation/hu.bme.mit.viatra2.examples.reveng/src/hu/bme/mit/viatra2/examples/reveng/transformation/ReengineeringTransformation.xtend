@@ -22,6 +22,9 @@ import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
 
+/**
+ * Implementation of the Reengineering case study. 
+ */
 class ReengineeringTransformation {
 	
 	extension BatchTransformationRuleFactory factory = new BatchTransformationRuleFactory
@@ -34,7 +37,7 @@ class ReengineeringTransformation {
 	val Resource srcResource
 	val Resource trgResource
 	
-	val StateMachine sm
+	var StateMachine sm
 	
 	new(Resource srcResource, Resource trgResource) {
 		this.srcResource = srcResource
@@ -45,23 +48,32 @@ class ReengineeringTransformation {
 		manipulation = new SimpleModelManipulations(transformation.iqEngine)
 		
 		transformation.ruleEngine.logger.level = Level::DEBUG
-		
-		sm = create(trgResource, stateMachine) as StateMachine
 	}
 	
-	
+	/**
+	 * A rule for creating new states. Does not rely on trace patterns.
+	 */
 	val createStateRule = createRule(NotAbstractStateClassMatcher::querySpecification) [
 		createState(cl)	
 	]
 
+	/**
+	 * A rule for creating new transitions. Does not rely on trace patterns.
+	 */
 	val createTransitionRule = createRule(ClassCalledWithActivateMatcher::querySpecification) [
 		createTransition(stateClass, activateCallClass)
 	]
 	
+	/**
+	 * A rule for creating new states. Disabled if trace pattern already matches (a state is created from the selected class).
+	 */
 	val createUnprocessedStateRule = createRule(UnprocessedStateClassMatcher::querySpecification) [
 		createState(cl)
 	]
 	
+	/**
+	 * A rule for creating new transitions. Disabled if trace pattern already matches (a transition is created from the current call).
+	 */
 	val createUnprocessedTransitionRule = createRule(UnprocessedTransitionMatcher::querySpecification) [
 		createTransition(stateClass, activateCallClass)
 	]
@@ -70,25 +82,28 @@ class ReengineeringTransformation {
 		println('''--> Found state class «cl.name»''')
 		val state = sm.createChild(stateMachine_States, state) as State
 		
-		val nameMatch = NameOfElementMatcher::querySpecification.<NameOfElementMatch, NameOfElementMatcher>find("element" -> cl)
+		val NameOfElementMatch nameMatch = NameOfElementMatcher::querySpecification.find("element" -> cl)
 		state.set(state_Name, nameMatch.name)
 	}
 	
 	private def createTransition(Class stateClass, Class activateCallClass) {
 		println('''---> Transition found from «stateClass.name» to «activateCallClass.name»''')
 		val transition = sm.createChild(stateMachine_Transitions, transition) as Transition
-		val fromState = StateTraceMatcher::querySpecification.<StateTraceMatch, StateTraceMatcher>find("cl" -> stateClass).st
-		val toState = StateTraceMatcher::querySpecification.<StateTraceMatch, StateTraceMatcher>find("cl" -> activateCallClass).st
-		transition.set(transition_Src, fromState)
-		transition.set(transition_Dst, toState)
+		val StateTraceMatch fromMatch = StateTraceMatcher::querySpecification.find("cl" -> stateClass)
+		val StateTraceMatch toMatch = StateTraceMatcher::querySpecification.find("cl" -> activateCallClass)
+		transition.set(transition_Src, fromMatch.st)
+		transition.set(transition_Dst, toMatch.st)
 	}
 	
 	def reengineer() {
+		sm = create(trgResource, stateMachine) as StateMachine
 		createStateRule.fireAllCurrent
 		createTransitionRule.fireAllCurrent
 	}
 	
 	def reengineer_update() {
+		//Initializing state machine if it is not already created
+		sm = trgResource.contents.filter(typeof(StateMachine)).head ?: create(trgResource, stateMachine) as StateMachine
 		val group = new TransformationRuleGroup(createUnprocessedStateRule, createUnprocessedTransitionRule)
 		group.fireWhilePossible
 	}
