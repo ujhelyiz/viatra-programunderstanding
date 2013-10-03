@@ -52,30 +52,55 @@ class ReengineeringTransformation {
 	}
 	
 	/**
-	 * A rule for creating new states. Does not rely on trace patterns.
+	 * A rule for creating new states.
+	 * </p><p>
+	 * The rule is activated for non-abstract state classes. Does not check whether the
+	 * class has a corresponding state already created.
 	 */
 	val createStateRule = createRule.precondition(NotAbstractStateClassMatcher::querySpecification).action [
+		//cl is a parameter of the NotAbstractStateClass pattern, representing the found class
 		createState(cl)	
 	].build
 
 	/**
-	 * A rule for creating new transitions. Does not rely on trace patterns.
+	 * A rule for creating new transitions.
+	 * </p><p>
+	 * The rule is activated for reference of the state instances. Does not
+	 * check whether the source/target classes have corresponding states already created.
 	 */
 	val createTransitionRule = createRule.precondition(ClassCalledWithActivateMatcher::querySpecification).action [
+		//stateClass is a parameter of the NotAbstractStateClass pattern, representing the source class
+		//activateCallClass is a parameter of the NotAbstractStateClass pattern, representing the target class
 		createTransition(stateClass, activateCallClass)
 	].build
 	
 	/**
-	 * A rule for creating new states. Disabled if trace pattern already matches (a state is created from the selected class).
+	 * A rule for creating new states.
+	 * </p><p>
+	 * Its precondition extends the precondition of {@link #createStateRule} with trace information.
+	 * </p><p>
+	 * The rule is activated for non-abstract state classes that do not 
+	 * have a corresponding state already created.
 	 */
 	val createUnprocessedStateRule = createRule.precondition(UnprocessedStateClassMatcher::querySpecification).action [
+		//cl is a parameter of the UnprocessedStateClass pattern, representing the found class
 		createState(cl)
 	].build
 	
 	/**
-	 * A rule for creating new transitions. Disabled if trace pattern already matches (a transition is created from the current call).
+	 * A rule for creating new transitions.
+	 * </p><p>
+	 * Its precondition extends the precondition of the {@link #createTransitionRule} rule with
+	 * <ol>
+	 *   <li>Checks whether the source/target classes have corresponding states</li>
+	 *   <li>Checks that no transition is created for the found reference</li>
+	 * </ol>
+	 * </p><p>
+	 * The rule is activated for reference of the state instances.
 	 */
 	val createUnprocessedTransitionRule = createRule.precondition(UnprocessedTransitionMatcher::querySpecification).action [
+		//stateClass is a parameter of the NotAbstractStateClass pattern, representing the source class
+		//activateCallClass is a parameter of the NotAbstractStateClass pattern, representing the target class
 		createTransition(stateClass, activateCallClass)
 	].build
 	
@@ -85,11 +110,12 @@ class ReengineeringTransformation {
 		state.set(state_Name, cl.name)
 	}
 	
-	private def createTransition(Class stateClass, Class activateCallClass) {
-		println('''---> Transition found from «stateClass.name» to «activateCallClass.name»''')
+	private def createTransition(Class sourceClass, Class targetClass) {
+		println('''---> Transition found from «sourceClass.name» to «targetClass.name»''')
 		val transition = sm.createChild(stateMachine_Transitions, transition) as Transition
-		val from = class2StateMatcher.getOneArbitraryMatch(stateClass, null)
-		val to = class2StateMatcher.getOneArbitraryMatch(activateCallClass, null)
+		//Finding source and target states based on traceability patterns
+		val from = class2StateMatcher.getOneArbitraryMatch(sourceClass, null)
+		val to = class2StateMatcher.getOneArbitraryMatch(targetClass, null)
 		//If https://bugs.eclipse.org/bugs/show_bug.cgi?id=418498 is fixed, the following will also work
 		//val from = class2StateMatcher.getOneArbitraryMatch("cl" -> stateClass)
 		//val to = class2StateMatcher.getOneArbitraryMatch("cl" -> activateCallClass)
@@ -97,16 +123,29 @@ class ReengineeringTransformation {
 		transition.set(transition_Dst, to)
 	}
 	
+	/**
+	 * Creates the state machine from the input model. Always creates an entirely new state machine.
+	 */
 	def reengineer() {
+		//Initialize state machine
 		sm = create(trgResource, stateMachine) as StateMachine
+		//Create all states from state classes
 		createStateRule.fireAllCurrent
+		//Create all transitions between states
 		createTransitionRule.fireAllCurrent
 	}
 	
+	/**
+	 * Executes a transformation when a previous state machine has been created,
+	 * and possibly new states and transitions are added. If started from scratch,
+	 * it simply executes the entire transformation.
+	 */
 	def reengineer_update() {
 		//Initializing state machine if it is not already created
 		sm = trgResource.contents.filter(typeof(StateMachine)).head ?: create(trgResource, stateMachine) as StateMachine
+		//Collecting all rules
 		val group = new TransformationRuleGroup(createUnprocessedStateRule, createUnprocessedTransitionRule)
+		//Trace information in preconditions express precedence - EVM can manage the concrete ordering
 		group.fireWhilePossible
 	}
 }
