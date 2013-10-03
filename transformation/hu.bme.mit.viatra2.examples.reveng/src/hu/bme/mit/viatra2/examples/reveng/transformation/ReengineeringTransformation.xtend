@@ -53,30 +53,30 @@ class ReengineeringTransformation {
 	/**
 	 * A rule for creating new states. Does not rely on trace patterns.
 	 */
-	val createStateRule = createRule(NotAbstractStateClassMatcher::querySpecification) [
+	val createStateRule = createRule.precondition(NotAbstractStateClassMatcher::querySpecification).action [
 		createState(cl)	
-	]
+	].build
 
 	/**
 	 * A rule for creating new transitions. Does not rely on trace patterns.
 	 */
-	val createTransitionRule = createRule(ClassCalledWithActivateMatcher::querySpecification) [
+	val createTransitionRule = createRule.precondition(ClassCalledWithActivateMatcher::querySpecification).action [
 		createTransition(stateClass, activateCallClass)
-	]
+	].build
 	
 	/**
 	 * A rule for creating new states. Disabled if trace pattern already matches (a state is created from the selected class).
 	 */
-	val createUnprocessedStateRule = createRule(UnprocessedStateClassMatcher::querySpecification) [
+	val createUnprocessedStateRule = createRule.precondition(UnprocessedStateClassMatcher::querySpecification).action [
 		createState(cl)
-	]
+	].build
 	
 	/**
 	 * A rule for creating new transitions. Disabled if trace pattern already matches (a transition is created from the current call).
 	 */
-	val createUnprocessedTransitionRule = createRule(UnprocessedTransitionMatcher::querySpecification) [
+	val createUnprocessedTransitionRule = createRule.precondition(UnprocessedTransitionMatcher::querySpecification).action [
 		createTransition(stateClass, activateCallClass)
-	]
+	].build
 	
 	private def createState(Class cl) {
 		println('''--> Found state class «cl.name»''')
