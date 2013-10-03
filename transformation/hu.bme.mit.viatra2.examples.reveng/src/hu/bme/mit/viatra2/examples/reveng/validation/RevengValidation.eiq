@@ -13,7 +13,7 @@ import "http://www.emftext.org/java/types"
 
 @Constraint(
 	severity = "warning",
-	location =  cl,
+	location =  cl, 
 	message = "Non-abstract class $cl.name$ extends State but does not implement static method Instance."
 )
 pattern stateWithMissingInstanceDefinition(cl : Class) {

@@ -483,7 +483,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
 					.getQueryBasedFeatureHandler(
 							this,
 							StatemachinePackageImpl.Literals.TRANSITION__SOURCE,
-							"hu.bme.mit.viatra2.examples.reveng.transitionTrace",
+							"hu.bme.mit.viatra2.examples.reveng.ref2Transition",
 							"t", "ref", QueryBasedFeatureKind.SINGLE_REFERENCE,
 							true, false);
 		}

@@ -7,18 +7,18 @@ import "http://www.emftext.org/java/commons"
 import "http://planet-mde.org/ttc2011/statemachine"
 
 @QueryBasedFeature(source = st, feature = "source", target = cl)
-pattern stateTrace(cl : Class, st : State) {
+pattern class2State(cl : Class, st : State) {
 	Class.name(cl, name);
 	State.name(st, name);
 }
 
 @QueryBasedFeature(source = t, feature = "source", target = ref)
-pattern transitionTrace(srcCl : Class, dstCl : Class, t : Transition, ref : IdentifierReference) {
+pattern ref2Transition(srcCl : Class, dstCl : Class, t : Transition, ref : IdentifierReference) {
 	Transition.src(t, srcState);
-	find stateTrace(srcCl, srcState);
+	find class2State(srcCl, srcState);
 	
 	Transition.dst(t, dstState);
-	find stateTrace(dstCl, dstState);
+	find class2State(dstCl, dstState);
 	
 	find classCalledWithActivate(dstCl, ref, srcCl);
 }

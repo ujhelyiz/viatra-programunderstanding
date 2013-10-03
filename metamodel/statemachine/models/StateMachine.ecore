@@ -17,7 +17,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.emftext.language.java/metamodel/java.ecore#//classifiers/Class"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="org.eclipse.incquery.querybasedfeature">
-        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.stateTrace"/>
+        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.class2State"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -31,7 +31,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.emftext.language.java/metamodel/java.ecore#//references/IdentifierReference"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="org.eclipse.incquery.querybasedfeature">
-        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.transitionTrace"/>
+        <details key="patternFQN" value="hu.bme.mit.viatra2.examples.reveng.ref2Transition"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

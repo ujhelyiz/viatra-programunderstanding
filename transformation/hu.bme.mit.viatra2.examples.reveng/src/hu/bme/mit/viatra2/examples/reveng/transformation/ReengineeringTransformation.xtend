@@ -1,11 +1,8 @@
 package hu.bme.mit.viatra2.examples.reveng.transformation
 
 import hu.bme.mit.viatra2.examples.reveng.ClassCalledWithActivateMatcher
-import hu.bme.mit.viatra2.examples.reveng.NameOfElementMatch
-import hu.bme.mit.viatra2.examples.reveng.NameOfElementMatcher
 import hu.bme.mit.viatra2.examples.reveng.NotAbstractStateClassMatcher
-import hu.bme.mit.viatra2.examples.reveng.StateTraceMatch
-import hu.bme.mit.viatra2.examples.reveng.StateTraceMatcher
+import hu.bme.mit.viatra2.examples.reveng.TraceMatchers
 import hu.bme.mit.viatra2.examples.reveng.UnprocessedStateClassMatcher
 import hu.bme.mit.viatra2.examples.reveng.UnprocessedTransitionMatcher
 import org.apache.log4j.Level
@@ -34,6 +31,8 @@ class ReengineeringTransformation {
 	
 	extension StatemachinePackage smPackage = StatemachinePackage::eINSTANCE
 	
+	extension TraceMatchers trMatchers
+	
 	val Resource srcResource
 	val Resource trgResource
 	
@@ -46,6 +45,8 @@ class ReengineeringTransformation {
 		transformation = new BatchTransformation(srcResource.resourceSet)
 		statements = new BatchTransformationStatements(transformation)
 		manipulation = new SimpleModelManipulations(transformation.iqEngine)
+		
+		trMatchers = new TraceMatchers(transformation.iqEngine)
 		
 		transformation.ruleEngine.logger.level = Level::DEBUG
 	}
@@ -81,18 +82,19 @@ class ReengineeringTransformation {
 	private def createState(Class cl) {
 		println('''--> Found state class «cl.name»''')
 		val state = sm.createChild(stateMachine_States, state) as State
-		
-		val NameOfElementMatch nameMatch = NameOfElementMatcher::querySpecification.find("element" -> cl)
-		state.set(state_Name, nameMatch.name)
+		state.set(state_Name, cl.name)
 	}
 	
 	private def createTransition(Class stateClass, Class activateCallClass) {
 		println('''---> Transition found from «stateClass.name» to «activateCallClass.name»''')
 		val transition = sm.createChild(stateMachine_Transitions, transition) as Transition
-		val StateTraceMatch fromMatch = StateTraceMatcher::querySpecification.find("cl" -> stateClass)
-		val StateTraceMatch toMatch = StateTraceMatcher::querySpecification.find("cl" -> activateCallClass)
-		transition.set(transition_Src, fromMatch.st)
-		transition.set(transition_Dst, toMatch.st)
+		val from = class2StateMatcher.getOneArbitraryMatch(stateClass, null)
+		val to = class2StateMatcher.getOneArbitraryMatch(activateCallClass, null)
+		//If https://bugs.eclipse.org/bugs/show_bug.cgi?id=418498 is fixed, the following will also work
+		//val from = class2StateMatcher.getOneArbitraryMatch("cl" -> stateClass)
+		//val to = class2StateMatcher.getOneArbitraryMatch("cl" -> activateCallClass)
+		transition.set(transition_Src, from)
+		transition.set(transition_Dst, to)
 	}
 	
 	def reengineer() {

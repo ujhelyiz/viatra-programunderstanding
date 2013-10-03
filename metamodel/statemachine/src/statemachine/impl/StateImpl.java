@@ -317,7 +317,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 			sourceHandler = QueryBasedFeatureHelper
 					.getQueryBasedFeatureHandler(this,
 							StatemachinePackageImpl.Literals.STATE__SOURCE,
-							"hu.bme.mit.viatra2.examples.reveng.stateTrace",
+							"hu.bme.mit.viatra2.examples.reveng.class2State",
 							"st", "cl", QueryBasedFeatureKind.SINGLE_REFERENCE,
 							true, false);
 		}
