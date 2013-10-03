@@ -889,92 +889,97 @@
       </constraints>
     </bodies>
   </patterns>
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.state" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
-    <annotations name="Item">
-      <parameters name="label">
-        <value xsi:type="patternLanguage:StringValue" value="$st.name$"/>
-      </parameters>
-      <parameters name="item">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="st"/>
-        </value>
-      </parameters>
-    </annotations>
-    <parameters name="st">
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/preconditions.eiq">
+    <parameters name="cl">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
       </type>
     </parameters>
     <bodies>
-      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
-        <type xsi:type="eMFPatternLanguage:ClassType">
-          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
-        </type>
-        <var var="st"/>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.6">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.0">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="cl"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+        </call>
       </constraints>
     </bodies>
   </patterns>
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.transition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
-    <annotations name="Edge">
-      <parameters name="source">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="src"/>
-        </value>
-      </parameters>
-      <parameters name="target">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="trg"/>
-        </value>
-      </parameters>
-    </annotations>
-    <parameters name="src">
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/preconditions.eiq">
+    <parameters name="activateCallClass">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
       </type>
     </parameters>
-    <parameters name="trg">
+    <parameters name="activatedClassRef">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <parameters name="stateClass">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
       </type>
     </parameters>
     <bodies>
-      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
-        <type xsi:type="eMFPatternLanguage:ClassType">
-          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-        </type>
-        <var var="t"/>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.11">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateCallClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activatedClassRef"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="stateClass"/>
+          </parameters>
+        </call>
       </constraints>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/src"/>
-            </type>
-          </tail>
-          <src var="t"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="src"/>
-          </dst>
-        </head>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.0">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateCallClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+        </call>
       </constraints>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/dst"/>
-            </type>
-          </tail>
-          <src var="t"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="trg"/>
-          </dst>
-        </head>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.0">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="stateClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.1">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="stateClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="activateCallClass"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+        </call>
       </constraints>
     </bodies>
   </patterns>
@@ -1084,136 +1089,131 @@
       </constraints>
     </bodies>
   </patterns>
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/preconditions.eiq">
-    <parameters name="cl">
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.state" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
+    <annotations name="Item">
+      <parameters name="label">
+        <value xsi:type="patternLanguage:StringValue" value="$st.name$"/>
+      </parameters>
+      <parameters name="item">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="st"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="st">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
       </type>
     </parameters>
     <bodies>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.6">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="cl"/>
-          </parameters>
-        </call>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.0">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="cl"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="_"/>
-          </parameters>
-        </call>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+        </type>
+        <var var="st"/>
       </constraints>
     </bodies>
   </patterns>
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/preconditions.eiq">
-    <parameters name="activateCallClass">
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.viewer.transition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/viewer/viewers.eiq">
+    <annotations name="Edge">
+      <parameters name="source">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="src"/>
+        </value>
+      </parameters>
+      <parameters name="target">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="trg"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="src">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
       </type>
     </parameters>
-    <parameters name="activatedClassRef">
+    <parameters name="trg">
       <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
-      </type>
-    </parameters>
-    <parameters name="stateClass">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
       </type>
     </parameters>
     <bodies>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.11">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="activateCallClass"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="activatedClassRef"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="stateClass"/>
-          </parameters>
-        </call>
+      <constraints xsi:type="eMFPatternLanguage:EClassifierConstraint">
+        <type xsi:type="eMFPatternLanguage:ClassType">
+          <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+        </type>
+        <var var="t"/>
       </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="activateCallClass"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="_"/>
-          </parameters>
-        </call>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/src"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="src"/>
+          </dst>
+        </head>
       </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="stateClass"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="_"/>
-          </parameters>
-        </call>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.1">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="stateClass"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="activateCallClass"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="_"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="_"/>
-          </parameters>
-        </call>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/dst"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="trg"/>
+          </dst>
+        </head>
       </constraints>
     </bodies>
   </patterns>
   <importPackages>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/expressions#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/members#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/modifiers#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
-    </packageImport>
-    <packageImport>
       <ePackage href="http://www.emftext.org/java/types#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/references#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/classifiers#/"/>
     </packageImport>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/containers#/"/>
+      <ePackage href="http://www.emftext.org/java/members#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/statements#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/containers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/parameters#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/commons#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/modifiers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/references#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/expressions#/"/>
     </packageImport>
   </importPackages>
 </eMFPatternLanguage:PatternModel>

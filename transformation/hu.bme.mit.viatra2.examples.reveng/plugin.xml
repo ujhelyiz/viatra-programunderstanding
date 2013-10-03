@@ -35,6 +35,72 @@
       </matcher>
    </extension>
    <extension
+         id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.StateWithMissingInstanceDefinitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.ClassWithInstanceDefinitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.class2State"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.Class2StateQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.class2State">
+      </matcher>
+   </extension>
+   <extension
+         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.class2State"
+         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+      <wellbehaving-derived-feature
+            classifier-name="State"
+            feature-name="source"
+            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
+      </wellbehaving-derived-feature>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.ref2Transition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.Ref2TransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.ref2Transition">
+      </matcher>
+   </extension>
+   <extension
+         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.ref2Transition"
+         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
+      <wellbehaving-derived-feature
+            classifier-name="Transition"
+            feature-name="source"
+            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
+      </wellbehaving-derived-feature>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedStateClassQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedTransitionQuerySpecification$Provider"
+            id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition">
+      </matcher>
+   </extension>
+   <extension
          id="hu.bme.mit.viatra2.examples.reveng.methodsOfClass"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
@@ -153,72 +219,6 @@
             querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.MethodCallQuerySpecification$Provider"
             id="hu.bme.mit.viatra2.examples.reveng.methodCall">
       </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.StateWithMissingInstanceDefinitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.validation.stateWithMissingInstanceDefinition">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.validation.util.ClassWithInstanceDefinitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.validation.classWithInstanceDefinition">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedStateClassQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.UnprocessedTransitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.unprocessedTransition">
-      </matcher>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.class2State"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.Class2StateQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.class2State">
-      </matcher>
-   </extension>
-   <extension
-         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.class2State"
-         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
-      <wellbehaving-derived-feature
-            classifier-name="State"
-            feature-name="source"
-            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
-      </wellbehaving-derived-feature>
-   </extension>
-   <extension
-         id="hu.bme.mit.viatra2.examples.reveng.ref2Transition"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="hu.bme.mit.viatra2.examples.reveng.util.Ref2TransitionQuerySpecification$Provider"
-            id="hu.bme.mit.viatra2.examples.reveng.ref2Transition">
-      </matcher>
-   </extension>
-   <extension
-         id="extension.derived.hu.bme.mit.viatra2.examples.reveng.ref2Transition"
-         point="org.eclipse.incquery.runtime.base.wellbehaving.derived.features">
-      <wellbehaving-derived-feature
-            classifier-name="Transition"
-            feature-name="source"
-            package-nsUri="http://planet-mde.org/ttc2011/statemachine">
-      </wellbehaving-derived-feature>
    </extension>
 
 </plugin>
