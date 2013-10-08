@@ -11,6 +11,8 @@ import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/statements"
 import "http://www.emftext.org/java/types"
 
+uses hu.bme.mit.viatra2.examples.reveng.*
+
 @Constraint(
 	severity = "warning",
 	location =  cl, 
@@ -18,13 +20,12 @@ import "http://www.emftext.org/java/types"
 )
 pattern stateWithMissingInstanceDefinition(cl : Class) {
 	neg find classWithInstanceDefinition(cl, _);
-	neg find hu.bme.mit.viatra2.examples.reveng.abstractClass(cl);
-	find hu.bme.mit.viatra2.examples.reveng.classSubtypeOfState(cl);
+	find notAbstractStateClass(cl);
 }
 
 pattern classWithInstanceDefinition(cl : Class, m : ClassMethod) {
 	Class.members(cl, m);
-	find hu.bme.mit.viatra2.examples.reveng.nameOfElement("Instance", m);
+	find nameOfElement("Instance", m);
 	ClassMethod.annotationsAndModifiers(m, mod);
 	Static(mod);
 }

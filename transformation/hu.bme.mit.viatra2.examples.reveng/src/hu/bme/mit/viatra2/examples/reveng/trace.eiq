@@ -6,7 +6,9 @@ import "http://www.emftext.org/java/commons"
 
 import "http://planet-mde.org/ttc2011/statemachine"
 
-@QueryBasedFeature(source = st, feature = "source", target = cl)
+@QueryBasedFeature(source = st,
+	feature = "source", target = cl
+)
 pattern class2State(cl : Class, st : State) {
 	Class.name(cl, name);
 	State.name(st, name);
@@ -21,4 +23,12 @@ pattern ref2Transition(srcCl : Class, dstCl : Class, t : Transition, ref : Ident
 	find class2State(dstCl, dstState);
 	
 	find classCalledWithActivate(dstCl, ref, srcCl);
+}
+
+pattern stateWithoutClass(st : State) {
+	neg find class2State(_, st);
+}
+
+pattern transitionWithoutReference(t : Transition) {
+	neg find ref2Transition(_, _, t, _);
 }

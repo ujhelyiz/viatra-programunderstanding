@@ -18,6 +18,8 @@ import statemachine.State
 import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
+import hu.bme.mit.viatra2.examples.reveng.StateWithoutClassMatcher
+import hu.bme.mit.viatra2.examples.reveng.TransitionWithoutReferenceMatcher
 
 /**
  * Implementation of the Reengineering case study. 
@@ -104,6 +106,16 @@ class ReengineeringTransformation {
 		createTransition(stateClass, activateCallClass)
 	].build
 	
+	val removeUnnecessaryStateRule = createRule.precondition(StateWithoutClassMatcher::querySpecification).action[
+		//st is a parameter of the StateWithoutClass pattern, representing the state without a source class
+		st.remove
+	].build
+	
+	val removeUnnecessaryTransitionRule = createRule.precondition(TransitionWithoutReferenceMatcher::querySpecification).action[
+		//t is a parameter of the StateWithoutClass pattern, representing the transition without a source reference
+		t.remove
+	].build
+	
 	private def createState(Class cl) {
 		println('''--> Found state class «cl.name»''')
 		val state = sm.createChild(stateMachine_States, state) as State
@@ -144,7 +156,10 @@ class ReengineeringTransformation {
 		//Initializing state machine if it is not already created
 		sm = trgResource.contents.filter(typeof(StateMachine)).head ?: create(trgResource, stateMachine) as StateMachine
 		//Collecting all rules
-		val group = new TransformationRuleGroup(createUnprocessedStateRule, createUnprocessedTransitionRule)
+		val group = new TransformationRuleGroup(
+			createUnprocessedStateRule, createUnprocessedTransitionRule,
+			removeUnnecessaryStateRule, removeUnnecessaryTransitionRule
+		)
 		//Trace information in preconditions express precedence - EVM can manage the concrete ordering
 		group.fireWhilePossible
 	}

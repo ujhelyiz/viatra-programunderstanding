@@ -50,11 +50,8 @@ pattern statementInMethod(st : Statement, m : ClassMethod) {
  * Matches classes that are subtypes of 'State'
  */
 pattern classSubtypeOfState(cl : Class) {
-	find supertypeOfClass(supertype, cl);
+	find supertypeOfClass+(supertype, cl);
 	find nameOfElement("State", supertype);
-} or {
-	find supertypeOfClass(supertype, cl);
-	find classSubtypeOfState(supertype);
 }
 
 /**
@@ -93,7 +90,7 @@ pattern targetOfNamespaceClassifierReference(nsClassRef : NamespaceClassifierRef
  * Matches abstract classes
  */
 pattern abstractClass(cl : Class) {
-	AnnotableAndModifiable.annotationsAndModifiers(cl, mod);
+	Class.annotationsAndModifiers(cl, mod);
 	Abstract(mod);
 }
 

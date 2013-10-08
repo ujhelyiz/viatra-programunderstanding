@@ -1,170 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <eMFPatternLanguage:PatternModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eMFPatternLanguage="http://www.eclipse.org/incquery/patternlanguage/emf/EMFPatternLanguage" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:patternLanguage="http://www.eclipse.org/incquery/patternlanguage/PatternLanguage">
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.class2State" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
-    <annotations name="QueryBasedFeature">
-      <parameters name="source">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="st"/>
-        </value>
-      </parameters>
-      <parameters name="feature">
-        <value xsi:type="patternLanguage:StringValue" value="source"/>
-      </parameters>
-      <parameters name="target">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="cl"/>
-        </value>
-      </parameters>
-    </annotations>
-    <parameters name="cl">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
-      </type>
-    </parameters>
-    <parameters name="st">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
-      </type>
-    </parameters>
-    <bodies>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
-            </type>
-          </tail>
-          <src var="cl"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="name"/>
-          </dst>
-        </head>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EAttribute" href="http://planet-mde.org/ttc2011/statemachine#//State/name"/>
-            </type>
-          </tail>
-          <src var="st"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="name"/>
-          </dst>
-        </head>
-      </constraints>
-    </bodies>
-  </patterns>
-  <patterns name="hu.bme.mit.viatra2.examples.reveng.ref2Transition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
-    <annotations name="QueryBasedFeature">
-      <parameters name="source">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="t"/>
-        </value>
-      </parameters>
-      <parameters name="feature">
-        <value xsi:type="patternLanguage:StringValue" value="source"/>
-      </parameters>
-      <parameters name="target">
-        <value xsi:type="patternLanguage:VariableValue">
-          <value var="ref"/>
-        </value>
-      </parameters>
-    </annotations>
-    <parameters name="srcCl">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
-      </type>
-    </parameters>
-    <parameters name="dstCl">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
-      </type>
-    </parameters>
-    <parameters name="t">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-      </type>
-    </parameters>
-    <parameters name="ref">
-      <type xsi:type="eMFPatternLanguage:ClassType">
-        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
-      </type>
-    </parameters>
-    <bodies>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/src"/>
-            </type>
-          </tail>
-          <src var="t"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="srcState"/>
-          </dst>
-        </head>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="srcCl"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="srcState"/>
-          </parameters>
-        </call>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
-        <head>
-          <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
-          </type>
-          <tail>
-            <type xsi:type="eMFPatternLanguage:ReferenceType">
-              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/dst"/>
-            </type>
-          </tail>
-          <src var="t"/>
-          <dst xsi:type="patternLanguage:VariableValue">
-            <value var="dstState"/>
-          </dst>
-        </head>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="dstCl"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="dstState"/>
-          </parameters>
-        </call>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.11">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="dstCl"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="ref"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="srcCl"/>
-          </parameters>
-        </call>
-      </constraints>
-    </bodies>
-  </patterns>
   <patterns name="hu.bme.mit.viatra2.examples.reveng.methodsOfClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/queries.eiq">
     <parameters name="cl">
       <type xsi:type="eMFPatternLanguage:ClassType">
@@ -372,7 +207,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.3" transitive="true">
+        <call patternRef="//@patterns.1" transitive="true">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="rootSt"/>
           </parameters>
@@ -391,27 +226,7 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.8">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="supertype"/>
-          </parameters>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="cl"/>
-          </parameters>
-        </call>
-      </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.7">
-          <parameters xsi:type="patternLanguage:StringValue" value="State"/>
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="supertype"/>
-          </parameters>
-        </call>
-      </constraints>
-    </bodies>
-    <bodies>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.8">
+        <call patternRef="//@patterns.6" transitive="true">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="supertype"/>
           </parameters>
@@ -422,6 +237,7 @@
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
         <call patternRef="//@patterns.5">
+          <parameters xsi:type="patternLanguage:StringValue" value="State"/>
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="supertype"/>
           </parameters>
@@ -437,14 +253,14 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.5">
+        <call patternRef="//@patterns.3">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.10">
+        <call patternRef="//@patterns.8">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
@@ -503,7 +319,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.9">
+        <call patternRef="//@patterns.7">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="nsClassRef"/>
           </parameters>
@@ -566,7 +382,7 @@
       <constraints xsi:type="patternLanguage:PathExpressionConstraint">
         <head>
           <type xsi:type="eMFPatternLanguage:ClassType">
-            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/modifiers#//AnnotableAndModifiable"/>
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
           </type>
           <tail>
             <type xsi:type="eMFPatternLanguage:ReferenceType">
@@ -605,14 +421,14 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.5">
+        <call patternRef="//@patterns.3">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="stateClass"/>
           </parameters>
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.15">
+        <call patternRef="//@patterns.13">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activatedClassRef"/>
           </parameters>
@@ -641,7 +457,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.16">
+        <call patternRef="//@patterns.14">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="instanceCall"/>
           </parameters>
@@ -651,7 +467,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.7">
+        <call patternRef="//@patterns.5">
           <parameters xsi:type="patternLanguage:StringValue" value="Instance"/>
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activatedCallClassInstance"/>
@@ -675,7 +491,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.16">
+        <call patternRef="//@patterns.14">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activateCall"/>
           </parameters>
@@ -685,7 +501,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.7">
+        <call patternRef="//@patterns.5">
           <parameters xsi:type="patternLanguage:StringValue" value="activate"/>
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activateMethod"/>
@@ -764,7 +580,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.12">
+        <call patternRef="//@patterns.10">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="targetRef"/>
           </parameters>
@@ -793,7 +609,7 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.4">
+        <call patternRef="//@patterns.2">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="st"/>
           </parameters>
@@ -803,7 +619,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.13">
+        <call patternRef="//@patterns.11">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="targetRef"/>
           </parameters>
@@ -835,7 +651,7 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.2">
+        <call patternRef="//@patterns.0">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
@@ -845,7 +661,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.14">
+        <call patternRef="//@patterns.12">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="targetRef"/>
           </parameters>
@@ -889,6 +705,215 @@
       </constraints>
     </bodies>
   </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.class2State" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
+    <annotations name="QueryBasedFeature">
+      <parameters name="source">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="st"/>
+        </value>
+      </parameters>
+      <parameters name="feature">
+        <value xsi:type="patternLanguage:StringValue" value="source"/>
+      </parameters>
+      <parameters name="target">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="cl"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="cl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://www.emftext.org/java/commons#//NamedElement/name"/>
+            </type>
+          </tail>
+          <src var="cl"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="name"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="http://planet-mde.org/ttc2011/statemachine#//State/name"/>
+            </type>
+          </tail>
+          <src var="st"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="name"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.ref2Transition" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
+    <annotations name="QueryBasedFeature">
+      <parameters name="source">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="t"/>
+        </value>
+      </parameters>
+      <parameters name="feature">
+        <value xsi:type="patternLanguage:StringValue" value="source"/>
+      </parameters>
+      <parameters name="target">
+        <value xsi:type="patternLanguage:VariableValue">
+          <value var="ref"/>
+        </value>
+      </parameters>
+    </annotations>
+    <parameters name="srcCl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <parameters name="dstCl">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/classifiers#//Class"/>
+      </type>
+    </parameters>
+    <parameters name="t">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+      </type>
+    </parameters>
+    <parameters name="ref">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.emftext.org/java/references#//IdentifierReference"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/src"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="srcState"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.15">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="srcCl"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="srcState"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EReference" href="http://planet-mde.org/ttc2011/statemachine#//Transition/dst"/>
+            </type>
+          </tail>
+          <src var="t"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="dstState"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.15">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="dstCl"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="dstState"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
+        <call patternRef="//@patterns.9">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="dstCl"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="ref"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="srcCl"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.stateWithoutClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
+    <parameters name="st">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//State"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.15">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="st"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="hu.bme.mit.viatra2.examples.reveng.transitionWithoutReference" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/trace.eiq">
+    <parameters name="t">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://planet-mde.org/ttc2011/statemachine#//Transition"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call patternRef="//@patterns.16">
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="t"/>
+          </parameters>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
   <patterns name="hu.bme.mit.viatra2.examples.reveng.unprocessedStateClass" fileName="platform:/resource/hu.bme.mit.viatra2.examples.reveng/src/hu/bme/mit/viatra2/examples/reveng/preconditions.eiq">
     <parameters name="cl">
       <type xsi:type="eMFPatternLanguage:ClassType">
@@ -897,14 +922,14 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.6">
+        <call patternRef="//@patterns.4">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.0">
+        <call patternRef="//@patterns.15">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
@@ -933,7 +958,7 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.11">
+        <call patternRef="//@patterns.9">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activateCallClass"/>
           </parameters>
@@ -946,7 +971,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
+        <call patternRef="//@patterns.15">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="activateCallClass"/>
           </parameters>
@@ -956,7 +981,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.0">
+        <call patternRef="//@patterns.15">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="stateClass"/>
           </parameters>
@@ -966,7 +991,7 @@
         </call>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.1">
+        <call patternRef="//@patterns.16">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="stateClass"/>
           </parameters>
@@ -1004,7 +1029,7 @@
     </parameters>
     <bodies>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.20">
+        <call patternRef="//@patterns.22">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
@@ -1013,15 +1038,8 @@
           </parameters>
         </call>
       </constraints>
-      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
-        <call patternRef="//@patterns.10">
-          <parameters xsi:type="patternLanguage:VariableValue">
-            <value var="cl"/>
-          </parameters>
-        </call>
-      </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.5">
+        <call patternRef="//@patterns.4">
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="cl"/>
           </parameters>
@@ -1058,7 +1076,7 @@
         </head>
       </constraints>
       <constraints xsi:type="patternLanguage:PatternCompositionConstraint">
-        <call patternRef="//@patterns.7">
+        <call patternRef="//@patterns.5">
           <parameters xsi:type="patternLanguage:StringValue" value="Instance"/>
           <parameters xsi:type="patternLanguage:VariableValue">
             <value var="m"/>
@@ -1180,28 +1198,16 @@
   </patterns>
   <importPackages>
     <packageImport>
-      <ePackage href="http://www.emftext.org/java/types#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/classifiers#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/members#/"/>
-    </packageImport>
-    <packageImport>
       <ePackage href="http://www.emftext.org/java/statements#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/containers#/"/>
     </packageImport>
     <packageImport>
-      <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
-    </packageImport>
-    <packageImport>
-      <ePackage href="http://www.emftext.org/java/parameters#/"/>
-    </packageImport>
-    <packageImport>
       <ePackage href="http://www.emftext.org/java/commons#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/types#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/modifiers#/"/>
@@ -1210,10 +1216,19 @@
       <ePackage href="http://www.emftext.org/java/references#/"/>
     </packageImport>
     <packageImport>
+      <ePackage href="http://www.emftext.org/java/parameters#/"/>
+    </packageImport>
+    <packageImport>
       <ePackage href="http://planet-mde.org/ttc2011/statemachine#/"/>
     </packageImport>
     <packageImport>
       <ePackage href="http://www.emftext.org/java/expressions#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/classifiers#/"/>
+    </packageImport>
+    <packageImport>
+      <ePackage href="http://www.emftext.org/java/members#/"/>
     </packageImport>
   </importPackages>
 </eMFPatternLanguage:PatternModel>
