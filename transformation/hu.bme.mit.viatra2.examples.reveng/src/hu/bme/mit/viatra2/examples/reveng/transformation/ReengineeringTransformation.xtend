@@ -2,11 +2,14 @@ package hu.bme.mit.viatra2.examples.reveng.transformation
 
 import hu.bme.mit.viatra2.examples.reveng.ClassCalledWithActivateMatcher
 import hu.bme.mit.viatra2.examples.reveng.NotAbstractStateClassMatcher
-import hu.bme.mit.viatra2.examples.reveng.TraceMatchers
+import hu.bme.mit.viatra2.examples.reveng.StateWithoutClassMatcher
+import hu.bme.mit.viatra2.examples.reveng.Trace
+import hu.bme.mit.viatra2.examples.reveng.TransitionWithoutReferenceMatcher
 import hu.bme.mit.viatra2.examples.reveng.UnprocessedStateClassMatcher
 import hu.bme.mit.viatra2.examples.reveng.UnprocessedTransitionMatcher
 import org.apache.log4j.Level
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.incquery.runtime.evm.specific.resolver.ArbitraryOrderConflictResolver
 import org.eclipse.viatra2.emf.runtime.modelmanipulation.IModelManipulations
 import org.eclipse.viatra2.emf.runtime.modelmanipulation.SimpleModelManipulations
 import org.eclipse.viatra2.emf.runtime.rules.TransformationRuleGroup
@@ -18,8 +21,6 @@ import statemachine.State
 import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
-import hu.bme.mit.viatra2.examples.reveng.StateWithoutClassMatcher
-import hu.bme.mit.viatra2.examples.reveng.TransitionWithoutReferenceMatcher
 
 /**
  * Implementation of the Reengineering case study. 
@@ -33,7 +34,7 @@ class ReengineeringTransformation {
 	
 	extension StatemachinePackage smPackage = StatemachinePackage::eINSTANCE
 	
-	extension TraceMatchers trMatchers
+	extension Trace traces = Trace.instance
 	
 	val Resource srcResource
 	val Resource trgResource
@@ -46,9 +47,7 @@ class ReengineeringTransformation {
 		
 		transformation = new BatchTransformation(srcResource.resourceSet)
 		statements = new BatchTransformationStatements(transformation)
-		manipulation = new SimpleModelManipulations(transformation.iqEngine)
-		
-		trMatchers = new TraceMatchers(transformation.iqEngine)
+		manipulation = new SimpleModelManipulations(iqEngine)
 		
 		transformation.ruleEngine.logger.level = Level::DEBUG
 	}
@@ -126,8 +125,8 @@ class ReengineeringTransformation {
 		println('''---> Transition found from «sourceClass.name» to «targetClass.name»''')
 		val transition = sm.createChild(stateMachine_Transitions, transition) as Transition
 		//Finding source and target states based on traceability patterns
-		val from = class2StateMatcher.getOneArbitraryMatch(sourceClass, null)
-		val to = class2StateMatcher.getOneArbitraryMatch(targetClass, null)
+		val from = iqEngine.class2State.getOneArbitraryMatch(sourceClass, null)
+		val to = iqEngine.class2State.getOneArbitraryMatch(targetClass, null)
 		//If https://bugs.eclipse.org/bugs/show_bug.cgi?id=418498 is fixed, the following will also work
 		//val from = class2StateMatcher.getOneArbitraryMatch("cl" -> stateClass)
 		//val to = class2StateMatcher.getOneArbitraryMatch("cl" -> activateCallClass)
@@ -160,7 +159,9 @@ class ReengineeringTransformation {
 			createUnprocessedStateRule, createUnprocessedTransitionRule,
 			removeUnnecessaryStateRule, removeUnnecessaryTransitionRule
 		)
-		//Trace information in preconditions express precedence - EVM can manage the concrete ordering
+		//Trace information in preconditions express precedence
+		ruleEngine.conflictResolver = new ArbitraryOrderConflictResolver
+		//Fire all activations
 		group.fireWhilePossible
 	}
 }
