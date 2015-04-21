@@ -149,3 +149,7 @@ pattern referenceTargetInClass(targetRef : IdentifierReference, referencedTarget
  pattern methodCall(caller : MethodCall, method : ClassMethod) {
  	ElementReference.target(caller, method);
  }
+ 
+ pattern compilationUnits(cu : CompilationUnit) {
+ 	CompilationUnit(cu);
+ }

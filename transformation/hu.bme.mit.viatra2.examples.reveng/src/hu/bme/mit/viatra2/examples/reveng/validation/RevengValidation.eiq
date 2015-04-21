@@ -10,14 +10,10 @@ import "http://www.emftext.org/java/parameters"
 import "http://www.emftext.org/java/references"
 import "http://www.emftext.org/java/statements"
 import "http://www.emftext.org/java/types"
+import hu.bme.mit.viatra2.examples.reveng.notAbstractStateClass
+import hu.bme.mit.viatra2.examples.reveng.nameOfElement
 
-uses hu.bme.mit.viatra2.examples.reveng.*
-
-@Constraint(
-	severity = "warning",
-	location =  cl, 
-	message = "Non-abstract class $cl.name$ extends State but does not implement static method Instance."
-)
+@Constraint(severity = "warning", location = cl, message = "Non-abstract class $cl.name$ extends State but does not implement static method Instance.")
 pattern stateWithMissingInstanceDefinition(cl : Class) {
 	neg find classWithInstanceDefinition(cl, _);
 	find notAbstractStateClass(cl);
