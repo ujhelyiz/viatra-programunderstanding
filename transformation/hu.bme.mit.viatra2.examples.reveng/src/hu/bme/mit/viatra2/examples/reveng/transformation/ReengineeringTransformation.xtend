@@ -22,6 +22,8 @@ import statemachine.State
 import statemachine.StateMachine
 import statemachine.StatemachinePackage
 import statemachine.Transition
+import org.eclipse.incquery.runtime.emf.EMFScope
+import org.eclipse.incquery.runtime.exception.IncQueryException
 
 /**
  * Implementation of the Reengineering case study. 
@@ -42,6 +44,10 @@ class ReengineeringTransformation {
 
 	var StateMachine sm
 
+	new(Resource srcResource, Resource trgResource) throws IncQueryException {
+		this(srcResource, trgResource, AdvancedIncQueryEngine.createUnmanagedEngine(new EMFScope(srcResource.resourceSet)))
+	}
+	
 	new(Resource srcResource, Resource trgResource, AdvancedIncQueryEngine engine) {
 		this.srcResource = srcResource
 		this.trgResource = trgResource

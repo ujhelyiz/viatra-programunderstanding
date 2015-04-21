@@ -10,7 +10,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.incquery.runtime.api.IncQueryEngine;
+import org.eclipse.incquery.runtime.api.AdvancedIncQueryEngine;
+import org.eclipse.incquery.runtime.emf.EMFScope;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
 import org.emftext.language.java.classifiers.Class;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class RevEngTest {
 		Resource res = set.getResource(uri, true);
 		Resource chartRes = set.createResource(URI.createFileURI("/Users/stampie/git/programunderstanding-ttc2011/transformation/hu.bme.mit.viatra2.examples.reveng.tests/tcp2.inc.statemachine"));
 		
-		IncQueryEngine engine = IncQueryEngine.on(set);
+		AdvancedIncQueryEngine engine = AdvancedIncQueryEngine.createUnmanagedEngine(new EMFScope(set));
 		UnprocessedStateClassMatcher matcher2 = UnprocessedStateClassMatcher.on(engine);
 		matcher2.forEachMatch(new UnprocessedStateClassProcessor() {
 			
@@ -51,7 +52,7 @@ public class RevEngTest {
 				
 			}
 		});
-		ReengineeringTransformation transformation = new ReengineeringTransformation(res, chartRes);
+		ReengineeringTransformation transformation = new ReengineeringTransformation(res, chartRes, engine);
 		transformation.reengineer_update();
 		
 //		System.out.println(Joiner.on("\n").join(chartRes.getAllContents()));
